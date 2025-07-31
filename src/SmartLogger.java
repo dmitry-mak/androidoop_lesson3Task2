@@ -9,14 +9,9 @@ public class SmartLogger implements Logger {
     @Override
     public void log(String msg) {
 
-        if (!isError(msg)) {
-            LocalDateTime date = LocalDateTime.now();
-            System.out.printf("%s#%d [%s] %s\n", info, logNumber, date, msg);
-        } else {
-            LocalDateTime date = LocalDateTime.now();
-            System.out.printf("%s#%d [%s] %s\n", error, logNumber, date, msg);
-        }
-        logNumber++;
+        String messageType = isError(msg) ? error : info;
+        LocalDateTime date = LocalDateTime.now();
+        System.out.printf("%s#%d [%s] %s\n", messageType, logNumber, date, msg);
     }
 
     public boolean isError(String msg) {
